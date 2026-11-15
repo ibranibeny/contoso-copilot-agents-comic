@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Click-through demos: add knowledge, create, use and publish an agent in Microsoft 365 Copilot (Agent Builder) and Copilot Studio. Steps follow Microsoft Learn.">
-<title>Click-through demos | Agent Up, Voni!</title>
+<title>Click-through demos | Agent Up, Dewi!</title>
 <style>:root{
   color-scheme: dark;
   --bg:#0a0f1f; --bg2:#0f1730; --panel:#131c3a; --panel2:#18234a; --ink:#eef2ff; --muted:#aab6dd; --dim:#7d89b3;
@@ -270,6 +270,68 @@ pre.code .k{color:#ff9bd2}pre.code .s{color:#9ff6ee}pre.code .c{color:#7d89b3}pr
   *,*:before,*:after{animation:none!important;transition:none!important}
   .arch .dt{display:none}
 }
+/* ---------- auto-play ---------- */
+.tbtn.auto{position:relative;overflow:hidden}
+.tbtn.auto .ai{font-size:11px;line-height:1}
+.tbtn.auto .ap{position:absolute;inset-inline-start:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,#ffe27a,#19d3c5);pointer-events:none}
+.tbtn.auto .ap.wait{width:100%;background:linear-gradient(90deg,transparent,#19d3c5,transparent) no-repeat;background-size:40% 100%;animation:apw 1.3s linear infinite}
+@keyframes apw{from{background-position:-40% 0}to{background-position:140% 0}}
+body.autoon .tbtn.auto{background:linear-gradient(90deg,#ff5fa2,#8b6cff);border-color:transparent;color:#fff}
+.tbtn.spd{min-width:48px;justify-content:center;padding-inline:10px}
+/* ---------- traffic flow ---------- */
+.tfhost{position:sticky;top:var(--hdrh,72px);z-index:6;margin:12px 0 10px;background:rgba(9,13,28,.95);border:1px solid var(--line);border-radius:14px;padding:8px 12px 10px;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.tfbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tfl{font-size:11.5px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:#9ff6ee;margin-inline-end:4px}
+.tfb{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:#fff;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.tfb:hover,.tfs:hover{border-color:#9ff6ee}
+.tfsteps{display:flex;gap:5px;flex-wrap:wrap}
+.tfs{min-width:28px;height:28px;border-radius:999px;border:1px solid var(--line);background:#0b1022;color:#c7d2f5;font-weight:900;font-size:12px;cursor:pointer;padding:0 6px}
+.tfs.done{background:#1b2a55;color:#fff}
+.tfs.on{background:linear-gradient(135deg,#ff5fa2,#8b6cff);color:#fff;border-color:transparent;box-shadow:0 0 0 3px rgba(255,95,162,.25)}
+.tfs.all{padding:0 10px}
+.tfcap{margin-top:7px;font-size:14.5px;line-height:1.5;color:#e9efff;min-height:44px}
+.tfcap b{display:inline-block;background:#ffe27a;color:#0b1022;border-radius:6px;padding:1px 7px;margin-inline-end:8px;font-size:11.5px;letter-spacing:.4px;text-transform:uppercase;vertical-align:1px}
+.arch.tf .dt{opacity:0;transition:opacity .4s}
+.arch.tf.all .dt{opacity:1}
+.arch.tf .eg{opacity:.2;transition:opacity .35s,stroke-width .35s}
+.arch.tf .eg.was{opacity:.55}
+.arch.tf .eg.on{opacity:1;stroke-width:3.6;stroke-dasharray:10 7;animation:dash .8s linear infinite}
+.arch.tf .eg.on.flow{filter:drop-shadow(0 0 5px rgba(79,140,255,.9))}
+.arch.tf .eg.on.flow2{filter:drop-shadow(0 0 5px rgba(139,108,255,.9))}
+.arch.tf .eg.on.flow3{filter:drop-shadow(0 0 5px rgba(25,211,197,.9))}
+.arch.tf .eg.on.gov{filter:drop-shadow(0 0 5px rgba(255,181,71,.9));stroke-width:2.6}
+.arch.tf .el{opacity:.35;transition:opacity .35s}
+.arch.tf .el.was,.arch.tf .el.on{opacity:1}
+.arch.tf .el.on rect{stroke:#ffe27a;stroke-width:2}
+.arch.tf .nd>*{transition:opacity .35s}
+.arch.tf .nd:not(.on):not(.was)>*{opacity:.38}
+.arch.tf .nd.was>*{opacity:.8}
+.arch.tf .nd.on rect{stroke-width:3.6;filter:drop-shadow(0 0 10px rgba(255,226,122,.6))}
+.arch.tf .bd{opacity:.4;transition:opacity .35s}
+.arch.tf .bd.on{opacity:1}
+.arch.tf.all .eg,.arch.tf.all .el,.arch.tf.all .bd,.arch.tf.all .nd>*{opacity:1}
+.arch .pk{pointer-events:none}
+.arch .pk .halo{fill:rgba(160,255,248,.3);transform-box:fill-box;transform-origin:center;animation:pkh .7s ease-in-out infinite alternate}
+.arch .pk .core{fill:#fff;stroke-width:3}
+.arch .pk.flow .core{stroke:#4f8cff}.arch .pk.flow2 .core{stroke:#8b6cff}.arch .pk.flow3 .core{stroke:#19d3c5}.arch .pk.gov .core{stroke:#ffb547}
+.arch .pk.rev .core{fill:#ffe27a}
+.arch .pk.rev .halo{fill:rgba(255,226,122,.32)}
+.arch .pk .tag rect{fill:#0b1022;stroke:#ffe27a;stroke-width:1.3}
+.arch .pk .tag text{font-size:11px;font-weight:800;fill:#ffe27a}
+.arch .pk.arrive .halo{animation:pka .32s ease-out forwards}
+@keyframes pkh{from{transform:scale(.75);opacity:.6}to{transform:scale(1.3);opacity:1}}
+@keyframes pka{to{transform:scale(2.6);opacity:0}}
+@media (max-width:860px){
+  .top{flex-wrap:wrap;gap:8px;padding:8px 10px}
+  .tbtn.auto .al{display:none}
+  .tfhost{position:static}
+  .tfcap{font-size:13.5px}
+}
+@media (max-width:1180px) and (min-width:861px){
+  .brand small{display:none}
+  select.chap{max-width:230px}
+  .top{gap:10px}
+}
 
 .dwrap{max-width:1400px;margin:0 auto;padding:14px 16px 90px}
 .dtop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:4px 0 12px}
@@ -439,7 +501,7 @@ pre.code .k{color:#ff9bd2}pre.code .s{color:#9ff6ee}pre.code .c{color:#7d89b3}pr
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="index.html" aria-label="Back to the comic"><img src="assets/orbi-anim.webp" alt=""><span><b>Agent Up, Voni!</b><small>Click-through demos</small></span></a>
+  <a class="brand" href="index.html" aria-label="Back to the comic"><img src="assets/orbi-anim.webp" alt=""><span><b>Agent Up, Dewi!</b><small>Click-through demos</small></span></a>
   <span class="sp"></span>
   <a class="tbtn" href="index.html">◂ Back to the comic</a>
 </header>
@@ -518,7 +580,7 @@ function abConfig(st){
 }
 function ovl(inner){ return '<div class="ovl"><div class="dlg2">' + inner + "</div></div>"; }
 var S = {};
-S["cp-home"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Voni, how can I help?</div><div class="muted">Simulated Microsoft Copilot</div><div class="cbox"><span class="plus">+</span><span class="ph">Message Copilot</span></div><div class="chips"><span class="chip">Summarize my unread email</span><span class="chip">Prep for my next meeting</span><span class="chip">Draft a status update</span></div>'); };
+S["cp-home"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Dewi, how can I help?</div><div class="muted">Simulated Microsoft Copilot</div><div class="cbox"><span class="plus">+</span><span class="ph">Message Copilot</span></div><div class="chips"><span class="chip">Summarize my unread email</span><span class="chip">Prep for my next meeting</span><span class="chip">Draft a status update</span></div>'); };
 S["agents"] = function(st){ return mapp(lp(st, "agents"), '<div class="h2">Agents &amp; Skills</div><div style="margin-bottom:14px"><button class="btnp" type="button" data-hot="new-agent">+ New agent</button></div><div class="sec2">My agents</div><div class="tcard">No agents yet. This list shows agents you own or can edit.</div>'); };
 S["ab-describe"] = function(st){ return mapp(lp(st, "agents"), abh(st, "Describe") + '<div class="msg a">Hi! Describe the agent you want, and I\'ll set up its name, description, instructions, knowledge and suggested prompts.</div><div class="sec2">Start with a template</div><div class="grid3"><div class="tcard"><b>Team onboarding</b>Help new team members get started</div><div class="tcard"><b>Writing coach</b>Feedback against your standards</div><div class="tcard"><b>Project info</b>Answers from project content</div></div><div class="cbox"><span class="plus">+</span><span class="ph">Message Agent Builder</span></div><div style="text-align:end;margin-top:12px"><button class="btns2" type="button" data-hot="skip">Skip to configure</button></div>'); };
 S["ab-config"] = function(st){ return abConfig(st); };
@@ -536,11 +598,11 @@ S["cp-agent"] = function(st){
   h += '<div class="cbox" data-hot="chat-input">' + (st.asked ? '<span class="ph">Message Onboarding Buddy</span>' : val(st, "chat-input", "Message Onboarding Buddy")) + "</div>";
   return mapp(lp(st, "ob"), h);
 };
-S["cp-mention"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Voni, how can I help?</div><div class="cbox"><span class="val">@</span></div><div class="pop" style="position:relative;margin-top:6px"><div class="pi2" data-hot="mention-ob">' + av("OB", "#0fb3a6") + 'Onboarding Buddy</div><div class="pi2">' + av("R", "#4f8cff") + "Researcher</div></div>"); };
+S["cp-mention"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Dewi, how can I help?</div><div class="cbox"><span class="val">@</span></div><div class="pop" style="position:relative;margin-top:6px"><div class="pi2" data-hot="mention-ob">' + av("OB", "#0fb3a6") + 'Onboarding Buddy</div><div class="pi2">' + av("R", "#4f8cff") + "Researcher</div></div>"); };
 S["ab-share"] = function(st){
   var h = '<span class="x">×</span><h4>Share Onboarding Buddy</h4><div class="inp" data-hot="share-input">' + val(st, "share-input", "Add a name, group, or email") + "</div>";
   if (st.picked && !st.shared) h += '<div class="kn" style="margin-top:8px"><div class="prow" style="border:0">' + ic("g-team") + ' Contoso New Hires (group)<span class="r">Can chat ▾</span></div>' + tg("Send notification", true) + '<div style="text-align:end;margin-top:6px"><button class="btnp" type="button" data-hot="share-add">Add</button></div></div>';
-  h += '<div class="sec2">People with access</div><div class="prow">' + av("V", "#2f7cf6") + ' Voni (you)<span class="r">Can edit</span></div>';
+  h += '<div class="sec2">People with access</div><div class="prow">' + av("D", "#2f7cf6") + ' Dewi (you)<span class="r">Can edit</span></div>';
   if (st.shared) h += '<div class="prow">' + ic("g-team") + ' Contoso New Hires<span class="r">Can chat</span></div>';
   h += tg("Org-wide sharing for chat access", false, "org-toggle");
   h += '<div style="display:flex;gap:8px;align-items:center;margin-top:10px"><button class="btns2" type="button">Copy chat link</button><span style="flex:1"></span><span data-hot="submit-link" style="color:#4f3cc9;font-weight:800;text-decoration:underline;font-size:13.5px">Submit to your catalog</span></div>';
@@ -613,7 +675,7 @@ S["cs-pub"] = function(st){
   return [sapp("agents", sbar(st, "Preview")), sdlg(h)];
 };
 S["cs-pubok"] = function(st){ return [sapp("agents", sbar(st, "Preview")), sdlg('<span class="x">×</span><h4>Published</h4><div class="banner ok">✓ Onboarding Orchestrator is live: version 1</div><p class="muted" style="margin-top:10px">Next, share the agent with users or add it to your organization catalog.</p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btns2" type="button">Add to organization catalog</button><button class="btnt" type="button" data-hot="pub-share">Share</button></div>')]; };
-S["cs-share"] = function(st){ return [sapp("agents", sbar(st, "Preview")), sdlg('<span class="x">×</span><h4>Share</h4><div class="inp"><span class="ph">Enter names, emails or security groups</span></div><div class="sec2">People who can use the agent</div><div class="prow" style="border:0">' + av("V", "#2f7cf6") + ' Voni (owner)</div><div class="sec2">Organization</div><div class="inp" data-hot="org-access">' + (st.eua ? "End user access ▾" : "No permissions, unless specified ▾") + '</div><div style="text-align:end;margin-top:12px"><button class="btnt" type="button" data-hot="share-go">Share</button></div>')]; };
+S["cs-share"] = function(st){ return [sapp("agents", sbar(st, "Preview")), sdlg('<span class="x">×</span><h4>Share</h4><div class="inp"><span class="ph">Enter names, emails or security groups</span></div><div class="sec2">People who can use the agent</div><div class="prow" style="border:0">' + av("D", "#2f7cf6") + ' Dewi (owner)</div><div class="sec2">Organization</div><div class="inp" data-hot="org-access">' + (st.eua ? "End user access ▾" : "No permissions, unless specified ▾") + '</div><div style="text-align:end;margin-top:12px"><button class="btnt" type="button" data-hot="share-go">Share</button></div>')]; };
 S["cp-studio-agent"] = function(st){
   var left = '<div class="lp"><div class="brandm"><span></span>Microsoft Copilot</div><button class="li" type="button">' + ic("g-chat") + 'Chat</button><button class="li" type="button">' + ic("g-robot") + 'Agents &amp; Skills</button><div class="lh">Agents</div><button class="li" type="button">' + av("R", "#4f8cff") + 'Researcher</button><button class="li on" type="button" data-hot="cp-orch">' + av("OO", "#0f8f86") + "Onboarding Orchestrator</button></div>";
   return mapp(left, '<div style="display:flex;align-items:center;gap:10px">' + av("OO", "#0f8f86", 38) + '<div><b>Onboarding Orchestrator</b><div class="muted">Published from Copilot Studio</div></div></div><div class="chips" style="margin-top:14px"><span class="chip">Prepare a welcome pack for a new hire</span></div><div class="cbox"><span class="ph">Message Onboarding Orchestrator</span></div>');

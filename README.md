@@ -1,4 +1,4 @@
-# Agent Up, Voni!
+# Agent Up, Dewi!
 
 An interactive anime comic and click-through demos for a **new Contoso Modern Work engineer**. It's an L400 deep dive into **Microsoft 365 Copilot**, **Copilot Studio** (including its harnesses), **MCP** and **A2A**.
 
@@ -6,12 +6,14 @@ An interactive anime comic and click-through demos for a **new Contoso Modern Wo
 
 - **Read the comic:** `index.html` (click or press → to advance)
 - **Click-through demos:** `demo.html`, covering Microsoft 365 Copilot (Agent Builder) and Copilot Studio (Microsoft Copilot harness): 1) adding knowledge, 2) create agent, 3) use agent, 4) publish agent
+- **Auto-play:** press **A** or the **Auto-play** button and the comic plays by itself: speech bubbles, pages, checkpoint answers and diagram traffic move on their own. The speed button sets the pace (0.75× to 2×); → skips ahead, A pauses. To open a session already playing, use https://ibranibeny.github.io/contoso-copilot-agents-comic/?autoplay=1 (add `&speed=1.5` to go faster).
+- **Animated traffic flows:** every architecture page plays its traffic hop by hop. Glowing packets travel each connection in order (yellow ones travel back), the boxes involved light up, and a caption explains each step. Pause, replay or pick a step.
 
 ## Cast
 
-- **Voni**: new Modern Work engineer at Contoso; always asks "where does it say that?"
+- **Dewi**: new Modern Work engineer at Contoso; always asks "where does it say that?"
 - **Nova**: the team's robotic-hologram AI mentor; every lesson points to Microsoft Learn
-- **Orbi**: the agent Voni builds, Contoso's Onboarding Buddy
+- **Orbi**: the agent Dewi builds, Contoso's Onboarding Buddy
 - **Kubo**: Contoso's IT Provisioning agent, hosted outside Copilot Studio, speaks A2A
 
 The panels are hand-painted, watercolor-style anime art.

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Click-through demos: add knowledge, create, use and publish an agent in Microsoft 365 Copilot (Agent Builder) and Copilot Studio. Steps follow Microsoft Learn.">
-<title>Click-through demos | Agent Up, Sari!</title>
+<title>Click-through demos | Agent Up, Voni!</title>
 <style>:root{
   color-scheme: dark;
   --bg:#0a0f1f; --bg2:#0f1730; --panel:#131c3a; --panel2:#18234a; --ink:#eef2ff; --muted:#aab6dd; --dim:#7d89b3;
@@ -439,7 +439,7 @@ pre.code .k{color:#ff9bd2}pre.code .s{color:#9ff6ee}pre.code .c{color:#7d89b3}pr
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="index.html" aria-label="Back to the comic"><img src="assets/orbi-anim.webp" alt=""><span><b>Agent Up, Sari!</b><small>Click-through demos</small></span></a>
+  <a class="brand" href="index.html" aria-label="Back to the comic"><img src="assets/orbi-anim.webp" alt=""><span><b>Agent Up, Voni!</b><small>Click-through demos</small></span></a>
   <span class="sp"></span>
   <a class="tbtn" href="index.html">◂ Back to the comic</a>
 </header>
@@ -518,7 +518,7 @@ function abConfig(st){
 }
 function ovl(inner){ return '<div class="ovl"><div class="dlg2">' + inner + "</div></div>"; }
 var S = {};
-S["cp-home"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Sari, how can I help?</div><div class="muted">Simulated Microsoft Copilot</div><div class="cbox"><span class="plus">+</span><span class="ph">Message Copilot</span></div><div class="chips"><span class="chip">Summarize my unread email</span><span class="chip">Prep for my next meeting</span><span class="chip">Draft a status update</span></div>'); };
+S["cp-home"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Voni, how can I help?</div><div class="muted">Simulated Microsoft Copilot</div><div class="cbox"><span class="plus">+</span><span class="ph">Message Copilot</span></div><div class="chips"><span class="chip">Summarize my unread email</span><span class="chip">Prep for my next meeting</span><span class="chip">Draft a status update</span></div>'); };
 S["agents"] = function(st){ return mapp(lp(st, "agents"), '<div class="h2">Agents &amp; Skills</div><div style="margin-bottom:14px"><button class="btnp" type="button" data-hot="new-agent">+ New agent</button></div><div class="sec2">My agents</div><div class="tcard">No agents yet. This list shows agents you own or can edit.</div>'); };
 S["ab-describe"] = function(st){ return mapp(lp(st, "agents"), abh(st, "Describe") + '<div class="msg a">Hi! Describe the agent you want, and I\'ll set up its name, description, instructions, knowledge and suggested prompts.</div><div class="sec2">Start with a template</div><div class="grid3"><div class="tcard"><b>Team onboarding</b>Help new team members get started</div><div class="tcard"><b>Writing coach</b>Feedback against your standards</div><div class="tcard"><b>Project info</b>Answers from project content</div></div><div class="cbox"><span class="plus">+</span><span class="ph">Message Agent Builder</span></div><div style="text-align:end;margin-top:12px"><button class="btns2" type="button" data-hot="skip">Skip to configure</button></div>'); };
 S["ab-config"] = function(st){ return abConfig(st); };
@@ -536,11 +536,11 @@ S["cp-agent"] = function(st){
   h += '<div class="cbox" data-hot="chat-input">' + (st.asked ? '<span class="ph">Message Onboarding Buddy</span>' : val(st, "chat-input", "Message Onboarding Buddy")) + "</div>";
   return mapp(lp(st, "ob"), h);
 };
-S["cp-mention"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Sari, how can I help?</div><div class="cbox"><span class="val">@</span></div><div class="pop" style="position:relative;margin-top:6px"><div class="pi2" data-hot="mention-ob">' + av("OB", "#0fb3a6") + 'Onboarding Buddy</div><div class="pi2">' + av("R", "#4f8cff") + "Researcher</div></div>"); };
+S["cp-mention"] = function(st){ return mapp(lp(st, "chat"), '<div class="hello">Hi Voni, how can I help?</div><div class="cbox"><span class="val">@</span></div><div class="pop" style="position:relative;margin-top:6px"><div class="pi2" data-hot="mention-ob">' + av("OB", "#0fb3a6") + 'Onboarding Buddy</div><div class="pi2">' + av("R", "#4f8cff") + "Researcher</div></div>"); };
 S["ab-share"] = function(st){
   var h = '<span class="x">×</span><h4>Share Onboarding Buddy</h4><div class="inp" data-hot="share-input">' + val(st, "share-input", "Add a name, group, or email") + "</div>";
   if (st.picked && !st.shared) h += '<div class="kn" style="margin-top:8px"><div class="prow" style="border:0">' + ic("g-team") + ' Contoso New Hires (group)<span class="r">Can chat ▾</span></div>' + tg("Send notification", true) + '<div style="text-align:end;margin-top:6px"><button class="btnp" type="button" data-hot="share-add">Add</button></div></div>';
-  h += '<div class="sec2">People with access</div><div class="prow">' + av("S", "#2f7cf6") + ' Sari (you)<span class="r">Can edit</span></div>';
+  h += '<div class="sec2">People with access</div><div class="prow">' + av("V", "#2f7cf6") + ' Voni (you)<span class="r">Can edit</span></div>';
   if (st.shared) h += '<div class="prow">' + ic("g-team") + ' Contoso New Hires<span class="r">Can chat</span></div>';
   h += tg("Org-wide sharing for chat access", false, "org-toggle");
   h += '<div style="display:flex;gap:8px;align-items:center;margin-top:10px"><button class="btns2" type="button">Copy chat link</button><span style="flex:1"></span><span data-hot="submit-link" style="color:#4f3cc9;font-weight:800;text-decoration:underline;font-size:13.5px">Submit to your catalog</span></div>';
@@ -613,7 +613,7 @@ S["cs-pub"] = function(st){
   return [sapp("agents", sbar(st, "Preview")), sdlg(h)];
 };
 S["cs-pubok"] = function(st){ return [sapp("agents", sbar(st, "Preview")), sdlg('<span class="x">×</span><h4>Published</h4><div class="banner ok">✓ Onboarding Orchestrator is live: version 1</div><p class="muted" style="margin-top:10px">Next, share the agent with users or add it to your organization catalog.</p><div style="display:flex;gap:8px;justify-content:flex-end"><button class="btns2" type="button">Add to organization catalog</button><button class="btnt" type="button" data-hot="pub-share">Share</button></div>')]; };
-S["cs-share"] = function(st){ return [sapp("agents", sbar(st, "Preview")), sdlg('<span class="x">×</span><h4>Share</h4><div class="inp"><span class="ph">Enter names, emails or security groups</span></div><div class="sec2">People who can use the agent</div><div class="prow" style="border:0">' + av("S", "#2f7cf6") + ' Sari (owner)</div><div class="sec2">Organization</div><div class="inp" data-hot="org-access">' + (st.eua ? "End user access ▾" : "No permissions, unless specified ▾") + '</div><div style="text-align:end;margin-top:12px"><button class="btnt" type="button" data-hot="share-go">Share</button></div>')]; };
+S["cs-share"] = function(st){ return [sapp("agents", sbar(st, "Preview")), sdlg('<span class="x">×</span><h4>Share</h4><div class="inp"><span class="ph">Enter names, emails or security groups</span></div><div class="sec2">People who can use the agent</div><div class="prow" style="border:0">' + av("V", "#2f7cf6") + ' Voni (owner)</div><div class="sec2">Organization</div><div class="inp" data-hot="org-access">' + (st.eua ? "End user access ▾" : "No permissions, unless specified ▾") + '</div><div style="text-align:end;margin-top:12px"><button class="btnt" type="button" data-hot="share-go">Share</button></div>')]; };
 S["cp-studio-agent"] = function(st){
   var left = '<div class="lp"><div class="brandm"><span></span>Microsoft Copilot</div><button class="li" type="button">' + ic("g-chat") + 'Chat</button><button class="li" type="button">' + ic("g-robot") + 'Agents &amp; Skills</button><div class="lh">Agents</div><button class="li" type="button">' + av("R", "#4f8cff") + 'Researcher</button><button class="li on" type="button" data-hot="cp-orch">' + av("OO", "#0f8f86") + "Onboarding Orchestrator</button></div>";
   return mapp(left, '<div style="display:flex;align-items:center;gap:10px">' + av("OO", "#0f8f86", 38) + '<div><b>Onboarding Orchestrator</b><div class="muted">Published from Copilot Studio</div></div></div><div class="chips" style="margin-top:14px"><span class="chip">Prepare a welcome pack for a new hire</span></div><div class="cbox"><span class="ph">Message Onboarding Orchestrator</span></div>');

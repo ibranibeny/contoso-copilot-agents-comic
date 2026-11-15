@@ -1,4 +1,4 @@
-# Agent Up, Sari!
+# Agent Up, Voni!
 
 An interactive anime comic and click-through demos for a **new Contoso Modern Work engineer**. It's an L400 deep dive into **Microsoft 365 Copilot**, **Copilot Studio** (including its harnesses), **MCP** and **A2A**.
 
@@ -9,9 +9,9 @@ An interactive anime comic and click-through demos for a **new Contoso Modern Wo
 
 ## Cast
 
-- **Sari**: new Modern Work engineer at Contoso; always asks "where does it say that?"
+- **Voni**: new Modern Work engineer at Contoso; always asks "where does it say that?"
 - **Nova**: the team's robotic-hologram AI mentor; every lesson points to Microsoft Learn
-- **Orbi**: the agent Sari builds, Contoso's Onboarding Buddy
+- **Orbi**: the agent Voni builds, Contoso's Onboarding Buddy
 - **Kubo**: Contoso's IT Provisioning agent, hosted outside Copilot Studio, speaks A2A
 
 The panels are hand-painted, watercolor-style anime art.

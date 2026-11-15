@@ -2,6 +2,35 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
+<script>(function(){
+  /* Animations follow the device's reduced-motion setting until the reader chooses; the choice is remembered. */
+  var K = "agentup-motion", pref = null, de = document.documentElement;
+  try { pref = localStorage.getItem(K); } catch (e) {}
+  var sys = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  de.classList.toggle("rm", pref === "on" ? false : (pref === "off" ? true : sys));
+  var M = window.AGENTUP_MOTION = {
+    sys: sys, pref: pref,
+    reduced: function(){ return de.classList.contains("rm"); },
+    set: function(on){
+      try { localStorage.setItem(K, on ? "on" : "off"); } catch (e) {}
+      M.pref = on ? "on" : "off";
+      de.classList.toggle("rm", !on);
+      var b = document.querySelector(".mbar"); if (b) b.remove();
+      var ev; try { ev = new Event("agentup-motion"); } catch (e) { ev = document.createEvent("Event"); ev.initEvent("agentup-motion", false, false); }
+      document.dispatchEvent(ev);
+    }
+  };
+  function bar(){
+    if (!(sys && pref === null) || document.querySelector(".mbar")) return;
+    var b = document.createElement("div");
+    b.className = "mbar"; b.setAttribute("role", "region"); b.setAttribute("aria-label", "Animation setting");
+    b.innerHTML = '<span>Animations are paused because your device asks for reduced motion.</span><button type="button" class="tbtn hot" data-m="on">Play animations</button><button type="button" class="tbtn" data-m="off">Keep them off</button>';
+    b.addEventListener("click", function(e){ var t = e.target.closest ? e.target.closest("[data-m]") : null; if (t) M.set(t.getAttribute("data-m") === "on"); });
+    document.body.appendChild(b);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bar); else bar();
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="description" content="Agent Up, Dewi! An interactive anime comic about Microsoft 365 Copilot, Copilot Studio, MCP and A2A for a new Contoso Modern Work engineer. Built from Microsoft Learn.">
@@ -266,10 +295,8 @@ pre.code .k{color:#ff9bd2}pre.code .s{color:#9ff6ee}pre.code .c{color:#7d89b3}pr
   .brand small{display:none}
   select.chap{max-width:150px}
 }
-@media (prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation:none!important;transition:none!important}
-  .arch .dt{display:none}
-}
+html.rm *,html.rm *:before,html.rm *:after{animation:none!important;transition:none!important}
+html.rm .arch .dt{display:none}
 /* ---------- auto-play ---------- */
 .tbtn.auto{position:relative;overflow:hidden}
 .tbtn.auto .ai{font-size:11px;line-height:1}
@@ -304,8 +331,8 @@ body.autoon .tbtn.auto{background:linear-gradient(90deg,#ff5fa2,#8b6cff);border-
 .arch.tf .el.was,.arch.tf .el.on{opacity:1}
 .arch.tf .el.on rect{stroke:#ffe27a;stroke-width:2}
 .arch.tf .nd>*{transition:opacity .35s}
-.arch.tf .nd:not(.on):not(.was)>*{opacity:.38}
-.arch.tf .nd.was>*{opacity:.8}
+.arch.tf:not(.all) .nd:not(.on):not(.was)>*{opacity:.38}
+.arch.tf:not(.all) .nd.was>*{opacity:.8}
 .arch.tf .nd.on rect{stroke-width:3.6;filter:drop-shadow(0 0 10px rgba(255,226,122,.6))}
 .arch.tf .bd{opacity:.4;transition:opacity .35s}
 .arch.tf .bd.on{opacity:1}
@@ -332,6 +359,8 @@ body.autoon .tbtn.auto{background:linear-gradient(90deg,#ff5fa2,#8b6cff);border-
   select.chap{max-width:230px}
   .top{gap:10px}
 }
+.mbar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;width:max-content;max-width:min(780px,94vw);background:#101833;border:2px solid #ffe27a;border-radius:16px;padding:10px 14px;box-shadow:var(--shadow);color:#fff;font-weight:700;font-size:14px}
+.mbar span{flex:1 1 260px}
 </style>
 </head>
 <body>
@@ -366,7 +395,7 @@ var SPEEDS = [0.75, 1, 1.5, 2];
 try { var sp0 = parseFloat(localStorage.getItem("agentup-speed")); if (SPEEDS.indexOf(sp0) >= 0) AUTO.speed = sp0; } catch (e) {}
 function ms(x){ return Math.round(x / AUTO.speed); }
 function readMs(t){ var n = String(t || "").length; return Math.min(12000, Math.max(2400, 1100 + 40 * n)); }
-var RM = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+function rmOn(){ return document.documentElement.classList.contains("rm"); }
 var NAMES = {sari:"Dewi", nova:"Nova", orbi:"Orbi", kubo:"Kubo", lina:"Lina (IT admin)", oni:"Oversharing Oni", vague:"Vague-o", muncher:"Credit Muncher"};
 var FLAT = [];
 CH.forEach(function(c, ci){ c.pages.forEach(function(p, pi){ FLAT.push([ci, pi]); }); });
@@ -425,7 +454,7 @@ function sparkle(box){
     });
     anim = requestAnimationFrame(tick);
   }
-  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) tick();
+  if (!rmOn()) tick();
 }
 function fx(panel, list){
   var box = el("div", {class: "fx", "aria-hidden": "true"}); panel.appendChild(box);
@@ -586,7 +615,7 @@ function traffic(host, svg, flow, seen){
   }
   function shoot(l, g, done){
     var p = svg.querySelector('path.eg[data-k="' + l.k + '"]'), L = 0;
-    if (p && !RM && typeof p.getTotalLength === "function") { try { L = p.getTotalLength(); } catch (e) { L = 0; } }
+    if (p && !rmOn() && typeof p.getTotalLength === "function") { try { L = p.getTotalLength(); } catch (e) { L = 0; } }
     if (!(L > 0)) { setTimeout(function(){ if (g === T.gen) done(); }, ms(800)); return; }
     var kind = ((p.getAttribute("class") || "").match(/\b(flow2|flow3|flow|gov)\b/) || [0, "flow"])[1];
     var ge = sv("g", {"class": "pk " + kind + (l.rev ? " rev" : "")});
@@ -865,7 +894,7 @@ function cover(){
   });
   w.appendChild(g);
   w.appendChild(el("div", {class: "sec"}, "<h2>How to read</h2>"));
-  w.appendChild(el("div", {class: "how"}, "<div><kbd>→</kbd> <kbd>Space</kbd> or click the panel: next line, then next page</div><div><kbd>←</kbd> back · <kbd>Home</kbd> cover</div><div><kbd>A</kbd> auto-play: lines, pages, quiz answers and diagram traffic move on by themselves; the speed button sets the pace</div><div>Architecture pages play their traffic flow hop by hop: pause, replay or pick a step</div><div>Every page lists its <b>Microsoft Learn</b> sources, with update dates</div><div>Use <b>Click-through demos</b> to practise in simulated product screens</div>"));
+  w.appendChild(el("div", {class: "how"}, "<div><kbd>→</kbd> <kbd>Space</kbd> or click the panel: next line, then next page</div><div><kbd>←</kbd> back · <kbd>Home</kbd> cover</div><div><kbd>A</kbd> auto-play: lines, pages, quiz answers and diagram traffic move on by themselves; the speed button sets the pace</div><div>Architecture pages play their traffic flow hop by hop: pause, replay or pick a step</div><div><kbd>M</kbd> animations on or off. The page follows your device's reduced-motion setting until you choose</div><div>Every page lists its <b>Microsoft Learn</b> sources, with update dates</div><div>Use <b>Click-through demos</b> to practise in simulated product screens</div>"));
   w.appendChild(el("div", {class: "foot"}, "Workshop material built from Microsoft Learn articles (retrieved 15 November 2026). It isn't official product documentation, and preview features can change: check the linked articles before you deliver. Contoso, Dewi, Nova, Orbi, Kubo and the villains are fictional. Artwork is AI-generated. Azure service icons are the official Azure Architecture Icons."));
   app.appendChild(w);
   setTip("Hi! I'm Orbi. Press Start and use → to read, or press A to auto-play.");
@@ -996,6 +1025,7 @@ document.addEventListener("keydown", function(e){
   else if (e.key === "ArrowLeft") { e.preventDefault(); prev(); }
   else if (e.key === "Home") go("#/");
   else if ((e.key === "a" || e.key === "A") && !e.ctrlKey && !e.metaKey && !e.altKey) { e.preventDefault(); autoSet(!AUTO.on); }
+  else if ((e.key === "m" || e.key === "M") && !e.ctrlKey && !e.metaKey && !e.altKey && window.AGENTUP_MOTION) { e.preventDefault(); window.AGENTUP_MOTION.set(rmOn()); }
 });
 var tx = null;
 app.addEventListener("touchstart", function(e){ tx = e.changedTouches[0].clientX; }, {passive: true});
@@ -1007,6 +1037,7 @@ if (abtn) abtn.addEventListener("click", function(){ autoSet(!AUTO.on); });
 if (sbtn) sbtn.addEventListener("click", function(){ var i = SPEEDS.indexOf(AUTO.speed); setSpeed(SPEEDS[(i + 1) % SPEEDS.length]); toast("Auto-play speed " + sbtn.textContent); if (AUTO.on) autoKick(); });
 document.addEventListener("visibilitychange", function(){ if (document.hidden) { autoClear(); barReset(); } else if (AUTO.on && state.ci >= 0) autoKick(); });
 setSpeed(AUTO.speed);
+document.addEventListener("agentup-motion", function(){ toast(rmOn() ? "Animations off. Press M to turn them back on." : "Animations on"); route(); });
 var hdr = document.querySelector(".top");
 function setHdr(){ if (hdr) document.documentElement.style.setProperty("--hdrh", (hdr.offsetHeight + 6) + "px"); }
 setHdr(); window.addEventListener("resize", setHdr);

@@ -8,6 +8,7 @@ An interactive anime comic and click-through demos for a **new Contoso Modern Wo
 - **Click-through demos:** `demo.html`, covering Microsoft 365 Copilot (Agent Builder) and Copilot Studio (Microsoft Copilot harness): 1) adding knowledge, 2) create agent, 3) use agent, 4) publish agent
 - **Auto-play:** press **A** or the **Auto-play** button and the comic plays by itself: speech bubbles, pages, checkpoint answers and diagram traffic move on their own. The speed button sets the pace (0.75× to 2×); → skips ahead, A pauses. To open a session already playing, use https://ibranibeny.github.io/contoso-copilot-agents-comic/?autoplay=1 (add `&speed=1.5` to go faster).
 - **Animated traffic flows:** every architecture page plays its traffic hop by hop. Glowing packets travel each connection in order (yellow ones travel back), the boxes involved light up, and a caption explains each step. Pause, replay or pick a step.
+- **Animations switch:** the pages follow your device's reduced-motion setting (Windows: Settings > Accessibility > Visual effects > Animation effects). When that setting is on, a notice offers **Play animations**; your choice is remembered, and **M** toggles it any time.
 
 ## Cast
 

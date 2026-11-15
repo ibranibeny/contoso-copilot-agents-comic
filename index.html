@@ -650,6 +650,7 @@ function traffic(host, svg, flow, seen){
   }
   T.left = function(){ return T.seen ? 0 : N - T.i; };
   T.reveal = function(){ show(T.i + 1); };
+  T.resume = function(){ if (T.playing) return; T.playing = true; setPb(); show(T.i < 0 ? 0 : Math.min(T.i, N)); };
   T.timer = setTimeout(function(){ show(0); }, 450);
   return T;
 }
@@ -981,6 +982,7 @@ function autoPlan(){
       barRun(ms(1200));
       AUTO.t = setTimeout(function(){ AUTO.t = null; if (AUTO.on && stageNode === s) done(); }, ms(1200));
     };
+    s._tf.resume();
     var h = s.querySelector(".tfhost"), g = s.querySelector("svg");
     if (h && g) AUTO.st.push(setTimeout(function(){ fitView(h, g); }, 300));
     return {wait: true};
